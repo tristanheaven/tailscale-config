@@ -1,0 +1,62 @@
+{
+  "tagOwners": {
+    "tag:assistant": [],
+    "tag:laptop":    [],
+    "tag:phone":     [],
+    "tag:router":    [],
+    "tag:server":    [],
+    "tag:tablet":    [],
+  },
+
+  "ipsets": {
+    "ipset:home": [
+      "add 192.168.0.0/16",
+    ],
+  },
+
+  "grants": [
+    {
+      "src": ["autogroup:tagged"],
+      "dst": ["tag:router"],
+      "ip":  ["tcp:53", "udp:53"],
+    },
+    {
+      "src": ["autogroup:tagged"],
+      "dst": ["autogroup:internet"],
+      "ip":  ["*"],
+    },
+    {
+      "src": ["tag:laptop", "tag:server"],
+      "dst": ["autogroup:tagged"],
+      "ip":  ["*"],
+    },
+    {
+      "src": ["tag:phone", "tag:tablet"],
+      "dst": ["tag:assistant"],
+      "ip":  ["*"],
+    },
+    {
+      "src": ["tag:phone"],
+      "dst": ["tag:laptop"],
+      "ip":  ["*"],
+    },
+  ],
+
+  "tests": [
+    {
+      "src": "tag:phone",
+      "allow": ["1.1.1.1:53"],
+    },
+  ],
+
+  "sshTests": [
+    {
+      "src": "tag:laptop",
+      "deny": ["*"],
+    },
+  ],
+
+  "derpMap": {
+    "Regions": {},
+  },
+}

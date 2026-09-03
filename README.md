@@ -1,0 +1,1 @@
+[![Sync Tailscale ACLs](https://github.com/tristanheaven/tailscale-config/actions/workflows/tailscale.yml/badge.svg?branch=main)](https://github.com/tristanheaven/tailscale-config/actions/workflows/tailscale.yml)

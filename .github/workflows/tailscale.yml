@@ -20,7 +20,9 @@ jobs:
           go-version-file: go.mod
 
       - name: Generate derpMap
-        run: go run ./cmd/generate-derp-map
+        run: |
+          go run ./cmd/generate-derp-map
+          sed -i "1i// Generated from commit $(git log -1 --format='%h (%cI)')" policy.hujson
 
       - name: Fetch version-cache.json
         uses: actions/cache@v6
